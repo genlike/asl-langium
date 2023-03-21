@@ -1,5 +1,5 @@
 node_modules
-!server/asl/lib/*
+server
 lib/*
 pack
 *.log
