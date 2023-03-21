@@ -27,16 +27,25 @@ exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const path = __importStar(require("path"));
 const node_1 = require("vscode-languageclient/node");
+const asl_commands_extension_1 = require("./asl-commands-extension");
 let client;
+let aslCustomCommand;
 // This function is called when the extension is activated.
 function activate(context) {
     client = startLanguageClient(context);
+    if (!aslCustomCommand) {
+        aslCustomCommand = new asl_commands_extension_1.ASLCustomCommands(context);
+        aslCustomCommand.registerCommands();
+    }
 }
 exports.activate = activate;
 // This function is called when the extension is deactivated.
 function deactivate() {
     if (client) {
         return client.stop();
+    }
+    if (aslCustomCommand) {
+        aslCustomCommand.dispose();
     }
     return undefined;
 }
