@@ -1,0 +1,10 @@
+node_modules
+!server/asl/lib/*
+lib/*
+pack
+*.log
+*.vsix
+src-gen/
+*.tgz
+yarn.lock
+package-lock.json
